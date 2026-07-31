@@ -28,13 +28,17 @@ collections:
       - { label: "Upload Foto", name: "image", widget: "image" }
 
   - name: "settings"
-    label: "Pengaturan Banner"
+    label: "Pengaturan Website"
     delete: false
     editor:
       preview: false
     files:
       - name: "appearance"
-        label: "Banner Utama"
+        label: "Konten & Banner Utama"
         file: "_data/settings.json"
         fields:
           - { label: "Foto Wallpaper Atas", name: "hero_image", widget: "image" }
+          - { label: "Kalimat Deskripsi Utama", name: "deskripsi_utama", widget: "text" }
+          - { label: "Teks Visi", name: "visi_teks", widget: "text" }
+          - { label: "Teks Misi", name: "misi_teks", widget: "text" }
+          - { label: "Email Resmi Organisasi", name: "email_kontak", widget: "string" }

@@ -14,9 +14,9 @@ collections:
     fields:
       - { label: "Judul Acara / Kegiatan", name: "title", widget: "string" }
       - { label: "Tanggal Acara", name: "date", widget: "date", format: "YYYY-MM-DD" }
-      - { label: "Foto Utama Dokumentasi", name: "image", widget: "image" }
-      - { label: "Foto Tambahan (Bisa Banyak)", name: "gallery", widget: "list", summary: "{{fields.img}}", field: { label: "Unggah Foto", name: "img", widget: "image" } }
-      - { label: "Isi Lengkap Berita / Artikel", name: "body", widget: "markdown" }
+      - { label: "Foto Utama Dokumentasi", name: "image", widget: "image", required: false }
+      - { label: "Foto Tambahan (Bisa Banyak)", name: "gallery", widget: "list", required: false, summary: "{{fields.img}}", field: { label: "Unggah Foto", name: "img", widget: "image" } }
+      - { label: "Isi Lengkap Berita / Artikel (Bisa Dikosongkan)", name: "body", widget: "markdown", required: false }
 
   - name: "program"
     label: "Program Kerja"

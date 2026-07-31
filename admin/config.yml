@@ -13,8 +13,9 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Judul Acara / Kegiatan", name: "title", widget: "string" }
-      - { label: "Tanggal Acara", name: "date", widget: "date" }
+      - { label: "Tanggal Acara", name: "date", widget: "date", format: "YYYY-MM-DD" }
       - { label: "Foto Utama Dokumentasi", name: "image", widget: "image" }
+      - { label: "Foto Tambahan (Bisa Banyak)", name: "gallery", widget: "list", summary: "{{fields.img}}", field: { label: "Unggah Foto", name: "img", widget: "image" } }
       - { label: "Isi Lengkap Berita / Artikel", name: "body", widget: "markdown" }
 
   - name: "program"

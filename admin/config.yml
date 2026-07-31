@@ -26,3 +26,15 @@ collections:
       - { label: "Judul Foto kegiatan", name: "title", widget: "string" }
       - { label: "Kategori Kegiatan", name: "kategori", widget: "select", options: ["SOSIAL", "OLAHRAGA", "KEAGAMAAN", "RAPAT"] }
       - { label: "Upload Foto", name: "image", widget: "image" }
+
+  - name: "settings"
+    label: "Pengaturan Banner"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "appearance"
+        label: "Banner Utama"
+        file: "_data/settings.json"
+        fields:
+          - { label: "Foto Wallpaper Atas", name: "hero_image", widget: "image" }

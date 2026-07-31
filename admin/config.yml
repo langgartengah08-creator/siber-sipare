@@ -36,11 +36,22 @@ collections:
       preview: false
     files:
       - name: "appearance"
-        label: "Konten & Banner Utama"
+        label: "Semua Teks & Foto Halaman Utama"
         file: "_data/settings.json"
         fields:
-          - { label: "Foto Wallpaper Atas", name: "hero_image", widget: "image" }
-          - { label: "Kalimat Deskripsi Utama", name: "deskripsi_utama", widget: "text" }
+          # --- BAGIAN ATAS (HERO) ---
+          - { label: "Foto Wallpaper Paling Atas", name: "hero_image", widget: "image" }
+          - { label: "Kalimat Deskripsi Utama Atas", name: "deskripsi_utama", widget: "text" }
+          
+          # --- BAGIAN VISI MISI ---
           - { label: "Teks Visi", name: "visi_teks", widget: "text" }
           - { label: "Teks Misi", name: "misi_teks", widget: "text" }
+          
+          # --- BAGIAN TENTANG KAMI ---
+          - { label: "Foto/Gambar Tentang Kami", name: "tentang_image", widget: "image" }
+          - { label: "Judul Tentang Kami", name: "tentang_judul", widget: "string" }
+          - { label: "Penjelasan Tentang Kami (Paragraf 1)", name: "tentang_p1", widget: "text" }
+          - { label: "Penjelasan Tentang Kami (Paragraf 2)", name: "tentang_p2", widget: "text" }
+          
+          # --- BAGIAN KONTAK ---
           - { label: "Email Resmi Organisasi", name: "email_kontak", widget: "string" }

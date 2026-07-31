@@ -24,7 +24,7 @@
                     <div class="bg-gradient-to-br from-emerald-500 to-blue-600 text-white p-2.5 rounded-xl font-extrabold text-2xl tracking-wider shadow-md shadow-emerald-200">SIBER</div>
                     <div>
                         <span class="font-bold text-lg text-slate-900 block leading-none">Sipare Bersatu</span>
-                        <span class="text-xs text-emerald-600 font-medium">Pemuda Sipare</span>
+                        <span class="text-xs text-emerald-600 font-medium">Pemuda Kab. Batang</span>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 font-medium">
@@ -73,7 +73,7 @@
         </div>
         <div class="space-y-6 text-left">
             <span class="text-blue-600 font-bold tracking-wider text-sm uppercase bg-blue-50 px-3 py-1 rounded-md">Tentang SIBER</span>
-            <h2 id="txt-tentang-judul" class="text-3xl font-bold text-slate-900">Wadah Resmi Pemuda Dukuh Sipare, Desa Sidayu, Kecamatan Bandar, Kabupaten Batang</h2>
+            <h2 id="txt-tentang-judul" class="text-3xl font-bold text-slate-900">Wadah Resmi Pemuda Dukuh Sipare, Desa Sidayu, Batang</h2>
             <p id="txt-tentang-p1" class="text-slate-600"><strong>SIBER (Sipare Bersatu)</strong> lahir sebagai payung organisasi resmi bagi seluruh pemuda-pemudi di wilayah Dukuh Sipare, Desa Sidayu, Kecamatan Bandar, Kabupaten Batang.</p>
             <p id="txt-tentang-p2" class="text-slate-600">Melalui nilai Hijau (keguyupan desa) and Biru (persatuan kokoh), kami berkomitmen menciptakan lingkungan karang taruna yang inklusif, kreatif, dan berdaya saing.</p>
         </div>
@@ -83,11 +83,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-16 space-y-3">
                 <span class="text-emerald-600 font-bold tracking-wider text-sm uppercase bg-emerald-50 px-3 py-1 rounded-md">Kontribusi Nyata</span>
-                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Program Kerja</h2>
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Program Kerja Organisasi</h2>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
-                
                 <div class="bg-gradient-to-br from-emerald-500 to-blue-600 text-white rounded-3xl p-8 shadow-xl text-left flex flex-col justify-between min-h-[250px] transition-transform duration-300 hover:scale-[1.02]">
                     <div>
                         <div class="flex items-center gap-3 mb-4">
@@ -95,11 +93,10 @@
                             <h3 class="text-2xl font-bold tracking-tight">Bidang Sosial</h3>
                         </div>
                         <div id="prog-sosial" class="space-y-3 text-sm text-emerald-50/90 leading-relaxed font-medium">
-                            <p class="italic text-white/60 font-normal"></p>
+                            <p class="italic text-white/60 font-normal">Belum ada program kerja yang ditambahkan.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-gradient-to-br from-emerald-500 to-blue-600 text-white rounded-3xl p-8 shadow-xl text-left flex flex-col justify-between min-h-[250px] transition-transform duration-300 hover:scale-[1.02]">
                     <div>
                         <div class="flex items-center gap-3 mb-4">
@@ -107,11 +104,10 @@
                             <h3 class="text-2xl font-bold tracking-tight">Bidang Olahraga</h3>
                         </div>
                         <div id="prog-olahraga" class="space-y-3 text-sm text-emerald-50/90 leading-relaxed font-medium">
-                            <p class="italic text-white/60 font-normal"></p>
+                            <p class="italic text-white/60 font-normal">Belum ada program kerja yang ditambahkan.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-gradient-to-br from-emerald-500 to-blue-600 text-white rounded-3xl p-8 shadow-xl text-left flex flex-col justify-between min-h-[250px] transition-transform duration-300 hover:scale-[1.02]">
                     <div>
                         <div class="flex items-center gap-3 mb-4">
@@ -119,11 +115,10 @@
                             <h3 class="text-2xl font-bold tracking-tight">Bidang Keagamaan</h3>
                         </div>
                         <div id="prog-keagamaan" class="space-y-3 text-sm text-emerald-50/90 leading-relaxed font-medium">
-                            <p class="italic text-white/60 font-normal"></p>
+                            <p class="italic text-white/60 font-normal">Belum ada program kerja yang ditambahkan.</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -165,7 +160,7 @@
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs">
         <p class="text-white font-bold text-sm mb-2">SIBER (Sipare Bersatu)</p>
-        <p>© 2026 Organisasi Pemuda Dukuh Sipare, Desa Sidayu, Kecamatan Bandar, Kabupaten Batang.</p>
+        <p>© 2026 Organisasi Pemuda Dukuh Sipare, Desa Sidayu, Kabupaten Batang.</p>
     </footer>
 
     <script>
@@ -213,9 +208,7 @@
                 if(!response.ok) return;
                 const files = await response.json();
                 
-                let sosialList = "";
-                let olahragaList = "";
-                let keagamaanList = "";
+                let sosialList = ""; let olahragaList = ""; let keagamaanList = "";
 
                 for (let file of files) {
                     const fileRaw = await fetch(file.download_url);
@@ -248,7 +241,6 @@
                 if(sosialList) document.getElementById('prog-sosial').innerHTML = sosialList;
                 if(olahragaList) document.getElementById('prog-olahraga').innerHTML = olahragaList;
                 if(keagamaanList) document.getElementById('prog-keagamaan').innerHTML = keagamaanList;
-
             } catch (e) { }
         }
 
@@ -278,6 +270,8 @@
 
                         const bodySplit = textData.split('---');
                         let bodyContent = bodySplit.length > 2 ? bodySplit.slice(2).join('---').trim() : textData;
+                        
+                        // Bersihkan penanda sistem
                         bodyContent = bodyContent.replace(/gallery:[\s\S]*?(?=\n\w|$)/g, '').replace(/body:[\s\S]*/, '').trim();
 
                         const title = titleMatch ? (titleMatch[1] || titleMatch[2]) : "Acara SIBER";
@@ -287,6 +281,9 @@
                         const articleId = `art-${idCounter++}`;
                         articlesData[articleId] = { title, date, imgUrl, body: bodyContent, gallery: galleryPhotos };
 
+                        // Jika isi artikel kosong ATAU hanya bertuliskan "body:" maka tombol baca ditiadakan
+                        const hasNoArticleText = (!bodyContent || bodyContent.toLowerCase() === 'body:');
+
                         container.innerHTML += `
                             <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col text-left hover:shadow-xl transition duration-300">
                                 ${imgUrl ? `<img src="${imgUrl}" class="w-full aspect-[4/3] object-cover">` : `<div class="w-full aspect-[4/3] bg-slate-100 flex items-center justify-center text-slate-300"><i class="fa-solid fa-image text-4xl"></i></div>`}
@@ -295,9 +292,14 @@
                                         <span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded uppercase"><i class="fa-regular fa-calendar-days mr-1"></i>${date}</span>
                                         <h3 class="text-lg font-bold text-slate-900 line-clamp-2">${title}</h3>
                                     </div>
-                                    <button onclick="openArticle('${articleId}')" class="text-sm font-bold text-emerald-600 hover:text-emerald-700 text-left flex items-center gap-1">
-                                        Baca Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
-                                    </button>
+                                    ${hasNoArticleText ? 
+                                        `<button onclick="openArticle('${articleId}')" class="text-sm font-bold text-blue-600 hover:text-blue-700 text-left flex items-center gap-1">
+                                            <i class="fa-solid fa-images"></i> Lihat Galeri Foto
+                                         </button>` : 
+                                        `<button onclick="openArticle('${articleId}')" class="text-sm font-bold text-emerald-600 hover:text-emerald-700 text-left flex items-center gap-1">
+                                            Baca Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                                         </button>`
+                                    }
                                 </div>
                             </div>`;
                     }
@@ -313,8 +315,16 @@
                 document.getElementById('modal-title').innerText = data.title;
                 document.getElementById('modal-date').innerText = data.date;
                 const img = document.getElementById('modal-img');
+                
                 if(data.imgUrl) { img.src = data.imgUrl; img.classList.remove('hidden'); } else { img.classList.add('hidden'); }
-                document.getElementById('modal-body').innerText = data.body;
+                
+                const bodyTextElement = document.getElementById('modal-body');
+                if(!data.body || data.body.toLowerCase() === 'body:') {
+                    bodyTextElement.innerText = "";
+                } else {
+                    bodyTextElement.innerText = data.body;
+                }
+                
                 const galleryContainer = document.getElementById('modal-gallery');
                 galleryContainer.innerHTML = '<p class="col-span-full text-xs font-bold text-slate-400 uppercase">Foto Dokumentasi Tambahan:</p>';
                 if(data.gallery && data.gallery.length > 0) {

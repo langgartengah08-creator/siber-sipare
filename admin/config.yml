@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "program"
+    label: "Program Kerja"
+    folder: "_data/program"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nama Program", name: "title", widget: "string" }
+      - { label: "Kategori", name: "kategori", widget: "select", options: ["Sosial", "Olahraga", "Keagamaan"] }
+      - { label: "Deskripsi Singkat", name: "deskripsi", widget: "text" }
+      - { label: "Tag/Slogan", name: "tag", widget: "string", placeholder: "Contoh: Kekeluargaan, Sportivitas" }
+
+  - name: "galeri"
+    label: "Galeri Foto"
+    folder: "_data/galeri"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Judul Foto kegiatan", name: "title", widget: "string" }
+      - { label: "Kategori Kegiatan", name: "kategori", widget: "select", options: ["SOSIAL", "OLAHRAGA", "KEAGAMAAN", "RAPAT"] }
+      - { label: "Upload Foto", name: "image", widget: "image" }

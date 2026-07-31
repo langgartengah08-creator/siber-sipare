@@ -24,7 +24,7 @@
                     <div class="bg-gradient-to-br from-emerald-500 to-blue-600 text-white p-2.5 rounded-xl font-extrabold text-2xl tracking-wider shadow-md shadow-emerald-200">SIBER</div>
                     <div>
                         <span class="font-bold text-lg text-slate-900 block leading-none">Sipare Bersatu</span>
-                        <span class="text-xs text-emerald-600 font-medium">Pemuda Dukuh Sipare</span>
+                        <span class="text-xs text-emerald-600 font-medium">Pemuda Sipare</span>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 font-medium">
@@ -110,6 +110,10 @@
                 <h2 id="modal-title" class="text-2xl font-bold text-slate-900"></h2>
                 <img id="modal-img" src="" class="w-full aspect-[16/9] object-cover rounded-2xl hidden">
                 <div id="modal-body" class="text-slate-600 text-sm leading-relaxed whitespace-pre-line pt-2"></div>
+                
+                <div id="modal-gallery" class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 hidden">
+                    <p class="col-span-full text-xs font-bold text-slate-400 uppercase">Foto Dokumentasi Tambahan:</p>
+                </div>
             </div>
         </div>
     </div>
@@ -135,7 +139,6 @@
         const repoOwner = "langgartengah08-creator"; 
         const repoName = "siber-sipare"; 
 
-        // 1. DATA PENGATURAN
         async function loadSettings() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/_data/settings.json`);
@@ -151,7 +154,6 @@
             } catch (e) { }
         }
 
-        // 2. DATA PROGRAM KERJA
         async function loadPrograms() {
             const container = document.getElementById('program-container');
             try {
@@ -178,7 +180,6 @@
             } catch (e) { container.innerHTML = "<p class='col-span-3 text-slate-400'>Belum ada program.</p>"; }
         }
 
-        // 3. FUNGSI LOAD ARTIKEL KEGIATAN ALA BLOGGER
         let articlesData = {}; 
         async function loadNews() {
             const container = document.getElementById('berita-container');
@@ -197,16 +198,23 @@
                         const dateMatch = textData.match(/date:\s*"(.*)"|date:\s*(.*)/);
                         const imgMatch = textData.match(/image:\s*"(.*)"|image:\s*(.*)/);
                         
-                        // Memisahkan body teks panjang karang taruna
+                        // Ekstraksi array galeri foto tambahan sederhana
+                        let galleryPhotos = [];
+                        const galleryBlocks = textData.match(/-\s*img:\s*"(.*)"|-\s*img:\s*(.*)/g);
+                        if(galleryBlocks) {
+                            galleryPhotos = galleryBlocks.map(b => b.replace(/-\s*img:\s*"/, '').replace(/"/, '').replace(/-\s*img:\s*/, '').trim());
+                        }
+
                         const bodySplit = textData.split('---');
-                        const bodyContent = bodySplit.length > 2 ? bodySplit.slice(2).join('---').trim() : textData;
+                        let bodyContent = bodySplit.length > 2 ? bodySplit.slice(2).join('---').trim() : textData;
+                        bodyContent = bodyContent.replace(/gallery:[\s\S]*?(?=\n\w|$)/g, '').replace(/body:[\s\S]*/, '').trim();
 
                         const title = titleMatch ? (titleMatch[1] || titleMatch[2]) : "Acara SIBER";
                         const date = dateMatch ? (dateMatch[1] || dateMatch[2]) : "Baru-baru ini";
                         const imgUrl = imgMatch ? (imgMatch[1] || imgMatch[2]) : "";
                         
                         const articleId = `art-${idCounter++}`;
-                        articlesData[articleId] = { title, date, imgUrl, body: bodyContent };
+                        articlesData[articleId] = { title, date, imgUrl, body: bodyContent, gallery: galleryPhotos };
 
                         container.innerHTML += `
                             <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col text-left hover:shadow-xl transition duration-300">
@@ -228,7 +236,6 @@
             }
         }
 
-        // BUKA DAN TUTUP MODAL BACA ARTIKEL
         function openArticle(id) {
             const data = articlesData[id];
             if(data) {
@@ -236,12 +243,26 @@
                 document.getElementById('modal-date').innerText = data.date;
                 
                 const img = document.getElementById('modal-img');
-                if(data.imgUrl) { img.src = data.imgUrl; img.classList.remove('hidden'); } 
-                else { img.classList.add('hidden'); }
+                if(data.imgUrl) { img.src = data.imgUrl; img.classList.remove('hidden'); } else { img.classList.add('hidden'); }
                 
-                // Membersihkan sisa tulisan format markdown jika ada agar rapi
-                let cleanBody = data.body.replace(/body:\s*"(.*)"|body:\s*(.*)/g, '').trim();
-                document.getElementById('modal-body').innerText = cleanBody;
+                document.getElementById('modal-body').innerText = data.body;
+                
+                // Mengisi galeri foto tambahan jika ada
+                const galleryContainer = document.getElementById('modal-gallery');
+                // Hapus foto lama di modal
+                galleryContainer.innerHTML = '<p class="col-span-full text-xs font-bold text-slate-400 uppercase">Foto Dokumentasi Tambahan:</p>';
+                
+                if(data.gallery && data.gallery.length > 0) {
+                    galleryContainer.classList.remove('hidden');
+                    data.gallery.forEach(picUrl => {
+                        if(picUrl) {
+                            galleryContainer.innerHTML += `<img src="${picUrl}" class="w-full aspect-video object-cover rounded-xl shadow-sm">`;
+                        }
+                    });
+                } else {
+                    galleryContainer.classList.add('hidden');
+                }
+                
                 document.getElementById('articleModal').classList.remove('hidden');
             }
         }
